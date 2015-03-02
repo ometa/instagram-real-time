@@ -18,16 +18,16 @@ var pub = __dirname + '/public',
  * Set the 'client ID' and the 'client secret' to use on Instagram
  * @type {String}
  */
-var clientID = 'YOUR_CLIENT_ID',
-    clientSecret = 'YOUR_CLIENT_SECRET';
+var clientID = process.env.CLIENT_ID,
+    clientSecret = process.env.CLIENT_SECRET;
 
 /**
  * Set the configuration
  */
 Instagram.set('client_id', clientID);
 Instagram.set('client_secret', clientSecret);
-Instagram.set('callback_url', 'http://YOUR_URL.com/callback');
-Instagram.set('redirect_uri', 'http://YOUR_URL.com');
+Instagram.set('callback_url', 'http://hunt.chiditarod.org/callback');
+Instagram.set('redirect_uri', 'http://hunt.chiditarod.org');
 Instagram.set('maxSockets', 10);
 
 /**
@@ -37,9 +37,9 @@ Instagram.set('maxSockets', 10);
  */
 Instagram.subscriptions.subscribe({
   object: 'tag',
-  object_id: 'lollapalooza',
+  object_id: 'chiditahunt',
   aspect: 'media',
-  callback_url: 'http://YOUR_URL.com/callback',
+  callback_url: 'http://hunt.chiditarod.org.com/callback',
   type: 'subscription',
   id: '#'
 });
@@ -51,9 +51,9 @@ Instagram.subscriptions.subscribe({
  */
 Instagram.subscriptions.subscribe({
   object: 'tag',
-  object_id: 'lollapalooza2013',
+  object_id: 'rodx',
   aspect: 'media',
-  callback_url: 'http://YOUR_URL.com/callback',
+  callback_url: 'http://hunt.chiditarod.org.com/callback',
   type: 'subscription',
   id: '#'
 });
@@ -65,9 +65,9 @@ Instagram.subscriptions.subscribe({
  */
 Instagram.subscriptions.subscribe({
   object: 'tag',
-  object_id: 'lolla2013',
+  object_id: 'chiditarod',
   aspect: 'media',
-  callback_url: 'http://YOUR_URL.com/callback',
+  callback_url: 'http://hunt.chiditarod.org.com/callback',
   type: 'subscription',
   id: '#'
 });
@@ -116,7 +116,7 @@ app.get("/views", function(req, res){
  */
 io.sockets.on('connection', function (socket) {
   Instagram.tags.recent({
-      name: 'lollapalooza',
+      name: 'chiditahunt',
       complete: function(data) {
         socket.emit('firstShow', { firstShow: data });
       }
